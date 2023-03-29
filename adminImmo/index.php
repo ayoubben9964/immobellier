@@ -4,7 +4,7 @@
 */
 session_start();
 include '../inc/fonctions.php';
-(isAdminLogin()) ?: redirectUrl('view/404.php');
+//(isAdminLogin()) ?: redirectUrl('view/404.php');
 $limit = 10;
 $offset = 0;
 

@@ -4,7 +4,7 @@ session_start();
 * Suppression d'un annonce
 */
 include '../inc/fonctions.php';
-(isAdminLogin()) ?: redirectUrl('view/404.php');
+//(isAdminLogin()) ?: redirectUrl('view/404.php');
 
 $id = $_GET['id'];
 

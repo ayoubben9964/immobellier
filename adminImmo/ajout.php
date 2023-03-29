@@ -5,9 +5,9 @@
 session_start();
 include '../inc/fonctions.php';
 
-(isUserLogin()) ?: redirectUrl('view/404.php');
+//(isUserLogin()) ?: redirectUrl('view/404.php');
 
-$title = $description = $image = $type = $price = $surface = $room ='';
+$title = $description = $image = $type = $price = $surface = $room = $id_annonce = $id_user ='';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') :
 
@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') :
         $image = "";
     endif;
 
-    $title = cleanData($_POST['titre']);
+    $title = cleanData($_POST['title']);
     $description = cleanData($_POST['description']);
     $description = cleanData($_POST['description']);
 

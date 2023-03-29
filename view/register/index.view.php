@@ -29,7 +29,7 @@
                 <label for="password">Password *</label>
                 <input type="password" name="password" id="password" required value="<?= $password ?>">
             </div>
-            <div>
+            <!-- <div>
                 <label for="adress">Adress *</label>
                 <input type="text" name="adress" id="adress" value="<?= $adress ?>">
             </div>
@@ -45,7 +45,7 @@
             <div>
                 <label for="phone">Phone *</label>
                 <input type="text" name="phone" id="phone" value="<?= $phone ?>">
-            </div>
+            </div> -->
             <div>
                 <label for="role">Role</label>
                 Redacteur <input type="radio" name="role" id="role" value="redacteur" checked> 

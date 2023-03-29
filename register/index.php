@@ -6,7 +6,7 @@ session_start();
 
 require '../inc/fonctions.php';
 
-$first_name = $last_name = $email = $password = $errors = $adress = $town  = $postal_code  =  $phone =  $role = $created_at = $modified_at = '';
+$first_name = $last_name = $email = $password = $errors = $adress = $town  = $postal_code  =  $phone =  $role = $created_at = $modified_at = ' ';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') :
 
@@ -15,9 +15,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') :
     $email = cleanData($_POST['email']);
     $password = cleanData($_POST['password']);
     $role = cleanData($_POST['role']);
-    $adress = cleanData($_POST['adress']);
-    $postal_code = cleanData($_POST['postal_code']);
-    $phone = cleanData($_POST['phone']);
+    // $adress = cleanData($_POST['adress']);
+    // $postal_code = cleanData($_POST['postal_code']);
+    // $phone = cleanData($_POST['phone']);
 
 
 
@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') :
             if($role === 'admin'):
                redirectUrl('./adminImmo/');
             else:
-               redirectUrl();
+               redirectUrl('');
             endif;
         endif;
     else :

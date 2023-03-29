@@ -4,9 +4,9 @@
 */
 include '../inc/fonctions.php';
 
-//(isGetIdValid()) ? $id = $_GET['id'] : error404();
+(isGetIdValid()) ? $id = $_GET['id'] : error404();
 
-$titreDb = getAnnonceById($id)['title'];
+$titleDb = getAnnonceById($id)['title'];
 $contenuDb = getAnnonceById($id)['description'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') :

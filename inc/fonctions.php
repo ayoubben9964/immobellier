@@ -50,7 +50,7 @@ function getAnnonceLimit(int $limit, int $offset): array
 {
    require 'pdo.php';
    $sqlRequest = "SELECT * FROM annonce INNER JOIN user ON annonce.id_user = user.id_user  ORDER BY annonce.id_annonce DESC LIMIT :limit OFFSET :offset;";
-   //$sqlRequest = "SELECT * FROM article ORDER BY id_article DESC LIMIT :limit OFFSET :offset";
+
    $resultat = $conn->prepare($sqlRequest);
    $resultat->bindValue(':limit', $limit, PDO::PARAM_INT);
    $resultat->bindValue(':offset', $offset, PDO::PARAM_INT);
@@ -66,7 +66,7 @@ function getAnnonceById(int $idAnnonce): array
    $resultat = $conn->prepare($sqlRequest);
    $resultat->bindValue(':idAnnonce', $idAnnonce, PDO::PARAM_INT);
    $resultat->execute();
-   var_dump($resulat);
+ 
    return $resultat->fetch();
 }
 
@@ -79,19 +79,15 @@ function suppAnnonceById(int $idAnnonce): bool
    return $resultat->execute();
 }
 
-function insertAnnonce(string $title, string $description, string $image, int $id_user,): int
+function insertAnnonce(string $title, string $description, string $image, string $id_user,): int
 {
    //string $type, string $price, string $surface, string $room, int $id_annonce
    require 'pdo.php';
-   $requete = 'INSERT INTO annonce (title,description,image,id_user,type,price,surface,room,id_annonce) VALUES (:title,:description,:image,:id_user,:type,:price,:surface,:room,:id_annonce)';
+   $requete = 'INSERT INTO annonce (title,description,image,id_user,) VALUES (:title,:description,:image,:id_user,:type)';
    $resultat = $conn->prepare($requete);
    $resultat->bindValue(':title', $title, PDO::PARAM_STR);
    $resultat->bindValue(':description', $description, PDO::PARAM_STR);
    $resultat->bindValue(':id_user', $id_user, PDO::PARAM_STR);
-   $resultat->bindValue(':type', $type, PDO::PARAM_STR);
-   $resultat->bindValue(':price', $price, PDO::PARAM_STR);
-   $resultat->bindValue(':surface', $surface, PDO::PARAM_STR);
-   $resultat->bindValue(':room', $room, PDO::PARAM_STR);
    $resultat->execute();
    return $conn->lastInsertId();
 }
@@ -153,24 +149,18 @@ function findEmail(string $email): array|bool
    return $resultat->fetch();
 }
 
-function insertUser(string $last_name,string $first_name, string $email, string $password, string $adress, string $town, string $postal_code, string $phone, string $role, string $created_at, string $modified_at): int
+function insertUser(string $last_name,string $first_name, string $email, string $password, string $role): int
 {
    require 'pdo.php';
    $passwordHashe = password_hash($password, PASSWORD_DEFAULT);
 
-   $requete = 'INSERT INTO user (last_name,first_name,email,password,role,adress,town,postal_code,phone,created_at,modified_at) VALUES (:last_name,:first_name,:email,:password,:role,:adress,:town,:postal_code,:phone,:created_at,:modified_at)';
+   $requete = 'INSERT INTO user (last_name,first_name,email,password,role,) VALUES (:last_name,:first_name,:email,:password,:role)';
    $resultat = $conn->prepare($requete);
    $resultat->bindValue(':last_name', $last_name, PDO::PARAM_STR);
    $resultat->bindValue(':first_name', $first_name, PDO::PARAM_STR);
    $resultat->bindValue(':email', $email, PDO::PARAM_STR);
    $resultat->bindValue(':password', $passwordHashe, PDO::PARAM_STR);
    $resultat->bindValue(':role', $role, PDO::PARAM_STR);
-   $resultat->bindValue(':adress', $adress, PDO::PARAM_STR);
-   $resultat->bindValue(':town', $town, PDO::PARAM_STR);
-   $resultat->bindValue(':postal_code', $postal_code, PDO::PARAM_STR);
-   $resultat->bindValue(':phone', $phone, PDO::PARAM_STR);
-   $resultat->bindValue(':created_at', $created_at, PDO::PARAM_STR);
-   $resultat->bindValue(':modified_at', $modified_at, PDO::PARAM_STR);
    $resultat->execute();
    return $conn->lastInsertId();
 }
@@ -194,7 +184,7 @@ function error404(): void
 
 function redirectUrl(string $path = ''): void
 {
-   $homeUrl = 'http://' . $_SERVER['HTTP_HOST']. '/immo' ;
+   $homeUrl = 'http://' . $_SERVER['HTTP_HOST']. '/IMMOBILLIER' ;
    $homeUrl .= '/'. $path;
    header("Location: {$homeUrl}");
    exit();

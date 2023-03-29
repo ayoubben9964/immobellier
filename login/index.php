@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') :
     $password = cleanData($_POST['password']);
 
     if ($email) :
-    
+
         if (findEmail($email)) :           
             if (password_verify($password, findEmail($email)['password'])) :             
                 $_SESSION['login'] = findEmail($email)['role'];
